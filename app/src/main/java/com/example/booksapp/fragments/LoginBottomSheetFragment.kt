@@ -6,32 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.booksapp.R
-import com.example.booksapp.databinding.FragmentLoginBinding
+import com.example.booksapp.databinding.FragmentLoginBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class LoginFragment : Fragment() {
+class LoginBottomSheetFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentLoginBinding
-
+    private lateinit var binding: FragmentLoginBottomSheetBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = FragmentLoginBottomSheetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.creatButton.setOnClickListener {
-
-
-        }
-
-
     }
+
 
 }

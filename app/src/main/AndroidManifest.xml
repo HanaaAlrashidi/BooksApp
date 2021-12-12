@@ -14,10 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BooksApp">
         <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LoginActivity"
+            android:name=".Splash"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
