@@ -28,7 +28,13 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.creatButton.setOnClickListener {
 
+            var register = RegisterBottomSheetFragment()
+             register.show(childFragmentManager,"")
+        }
 
+        binding.loginButton.setOnClickListener {
+            var login = LoginBottomSheetFragment()
+            login.show(childFragmentManager,"")
         }
 
 

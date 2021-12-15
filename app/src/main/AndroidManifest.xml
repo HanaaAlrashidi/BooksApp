@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BooksApp">
         <activity
-            android:name=".Splash"
+            android:name=".activities.Splash"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"

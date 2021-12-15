@@ -13,6 +13,7 @@ import com.example.booksapp.databinding.FragmentHomeBinding
 import com.example.booksapp.models.Book
 import com.example.booksapp.models.BookModel
 import com.example.booksapp.repository.SHARED_PREF_FILE
+import com.example.booksapp.viewmodel.BooksViewModel
 
 
 class HomeFragment : Fragment() {
@@ -60,8 +61,8 @@ class HomeFragment : Fragment() {
 
         booksViewModel.booksLiveData.observe(viewLifecycleOwner, {
             binding.homeProgressBar.animate().alpha(0f).setDuration(1000)
-            homeAdapter.submitList(it.books)
-            allBooks = it.books
+            homeAdapter.submitList(it)
+            allBooks = it
             binding.homeRecyclerView.animate().alpha(1f)
         })
 

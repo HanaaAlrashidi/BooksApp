@@ -1,4 +1,4 @@
-package com.example.booksapp
+package com.example.booksapp.activities
 
 import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +15,6 @@ class Splash : AppCompatActivity() {
 
         // Initialize Api Service Repository only for one time with companion object function in ApiServiceRepository class
 
-        ApiServiceRepository.init(this)
 
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)

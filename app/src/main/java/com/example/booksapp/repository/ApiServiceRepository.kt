@@ -1,6 +1,6 @@
 package com.example.booksapp.repository
 
-import android.content.Context
+
 import com.example.booksapp.api.IBookApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,7 +14,7 @@ import java.lang.Exception
 const val SHARED_PREF_FILE = "Auth"
 private const val BASE_URL = "https://www.dbooks.org"
 
-class ApiServiceRepository(val context: Context) {
+object ApiServiceRepository {
 
     // Retrofit.Builder
     // And I need to specify a factory for deserializing the response using the Gson library
@@ -31,9 +31,5 @@ class ApiServiceRepository(val context: Context) {
 
     suspend fun getBooks() = retrofitApi.getBooks()
 
-    // to initialize and get the repository we use the companion object
-    //singleton (single object)
-    companion object{
-        private var instance: ApiServiceRepository? = null
-    }
+
 }

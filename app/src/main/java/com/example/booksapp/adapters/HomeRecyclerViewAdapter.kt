@@ -6,17 +6,18 @@ import com.example.booksapp.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import com.example.booksapp.fragments.BooksViewModel
 import com.example.booksapp.models.Book
-import com.example.booksapp.models.BookModel
+import com.example.booksapp.viewmodel.BooksViewModel
 import com.squareup.picasso.Picasso
 
 private const val TAG = "HomeRecyclerViewAdapter"
-class HomeRecyclerViewAdapter(val context: Context, val viewModel: BooksViewModel) :
+class HomeRecyclerViewAdapter(context: Context, val booksViewModel: BooksViewModel) :
     RecyclerView.Adapter<HomeRecyclerViewAdapter.HomeViewHolder>() {
 
 
@@ -52,8 +53,12 @@ class HomeRecyclerViewAdapter(val context: Context, val viewModel: BooksViewMode
 
         holder.bookTitleTextView.text = item.title
 
-        Picasso.get().load(item.image).into(holder.bookImage)
+        holder.itemView.setOnClickListener {
+            booksViewModel.selectedItemMutableLiveData.postValue(item)
+            holder.itemView.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
+        }
 
+        Picasso.get().load(item.image).into(holder.bookImage)
 
     }
 
@@ -69,5 +74,6 @@ class HomeRecyclerViewAdapter(val context: Context, val viewModel: BooksViewMode
 
         val bookTitleTextView: TextView = itemView.findViewById(R.id.book_Title)
         val bookImage: ImageView = itemView.findViewById(R.id.book_imageView)
+
     }
 }

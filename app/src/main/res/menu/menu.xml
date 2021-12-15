@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/HomeFragment"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/home" />
+        android:title=" " />
     <item
-        android:id="@+id/myListFragment"
+        android:id="@+id/myListFragment2"
         android:icon="@drawable/ic_baseline_add_24"
-        android:title="@string/myList" />
-    <item
-        android:id="@+id/profilFragment"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="@string/profile" />
+        android:title=" " />
 </menu>

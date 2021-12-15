@@ -48,6 +48,8 @@ class RegisterBottomSheetFragment : BottomSheetDialogFragment() {
                                         "User Registered Successful",
                                         Toast.LENGTH_SHORT
                                     )  .show()
+
+                                    dismiss()
                                 }
                             }
 

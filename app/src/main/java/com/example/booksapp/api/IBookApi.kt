@@ -8,4 +8,6 @@ interface IBookApi {
 
     @GET("/api/recent")
     suspend fun getBooks(): Response<BookModel>
+
 }
+
