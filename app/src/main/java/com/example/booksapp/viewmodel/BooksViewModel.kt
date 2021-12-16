@@ -59,6 +59,7 @@ class BooksViewModel : ViewModel() {
 
     fun addBooks(myListModel: Book, note: String){
 
+        Log.d(TAG,myListModel.toString())
         viewModelScope.launch(Dispatchers.IO) {
             // Coroutines Dispatchers
 
@@ -74,7 +75,7 @@ class BooksViewModel : ViewModel() {
                     Log.d(TAG, "Success")
                     response.body()?.run{
                         Log.d(TAG, "Book: ${this.toString()}")
-                        //Send Response to view
+
 
                     }
 
@@ -83,6 +84,7 @@ class BooksViewModel : ViewModel() {
                     Log.d(TAG, response.message())
                 }
 
+                Log.d(TAG, response.message())
 
             } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())

@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.booksapp.databinding.MyListItemLayoutBinding
 import com.example.booksapp.models.Book
+import com.example.booksapp.models.MyListModel
 import com.squareup.picasso.Picasso
 
 class MyListRecyclerViewAdapter:
     RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {
 
-    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Book>() {
-        override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
+    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MyListModel>() {
+        override fun areItemsTheSame(oldItem: MyListModel, newItem: MyListModel): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
+        override fun areContentsTheSame(oldItem: MyListModel, newItem: MyListModel): Boolean {
             return oldItem == newItem
         }
 
@@ -29,7 +30,7 @@ class MyListRecyclerViewAdapter:
 
     private val differ =  AsyncListDiffer(this, DIFF_CALLBACK)
 
-    fun submitList(list: List<Book>){
+    fun submitList(list: List<MyListModel>){
         differ.submitList(list)
     }
 
@@ -47,6 +48,7 @@ class MyListRecyclerViewAdapter:
     override fun onBindViewHolder(holder: MyListViewHolder, position: Int) {
         val item = differ.currentList[position]
 
+
        holder.bind(item)
 
     }
@@ -56,8 +58,8 @@ class MyListRecyclerViewAdapter:
     }
 
     class MyListViewHolder(val binding: MyListItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Book){
-            binding.titleTextview.text = item.authors
+        fun bind(item: MyListModel){
+            binding.titleTextview.text = item.name
             Picasso.get().load(item.image).into(binding.bookImageView)
 
         }

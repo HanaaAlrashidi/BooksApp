@@ -1,10 +1,12 @@
 package com.example.booksapp.fragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.booksapp.R
 import com.example.booksapp.databinding.FragmentRegisterBottmSheetBinding
 import com.example.booksapp.util.RegisterValidations
@@ -16,6 +18,7 @@ class RegisterBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentRegisterBottmSheetBinding
     private val validator = RegisterValidations()
+   // private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,9 +39,9 @@ class RegisterBottomSheetFragment : BottomSheetDialogFragment() {
             val password = binding.passwordReEditText.text.toString()
             val confirmPassword = binding.confirmPasswordEditText.text.toString()
 
-            if (email.isNotBlank() && password.isNotBlank() && confirmPassword.isNotBlank()){
-                if (password == confirmPassword){
-                    if (validator.passwordIsValid(email)){
+            if (email.isNotBlank() && password.isNotBlank() && confirmPassword.isNotBlank()) {
+                if (password == confirmPassword) {
+                    if (validator.emailIsValid(email)) {
                         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
@@ -47,22 +50,32 @@ class RegisterBottomSheetFragment : BottomSheetDialogFragment() {
                                         requireActivity(),
                                         "User Registered Successful",
                                         Toast.LENGTH_SHORT
-                                    )  .show()
+                                    ).show()
 
                                     dismiss()
                                 }
                             }
 
 
-                }else{
-                        Toast.makeText(requireActivity(), "Make sure you typed your email address correctly.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            requireActivity(),
+                            "Make sure you typed your email address correctly.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(
+                        requireActivity(),
+                        "all field should be fill",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            }else{
-                Toast.makeText(requireActivity(), "all field should be fill", Toast.LENGTH_SHORT).show()
             }
         }
+
+
     }
 
 
-}
 }

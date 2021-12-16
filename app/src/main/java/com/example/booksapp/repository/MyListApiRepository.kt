@@ -23,7 +23,7 @@ class MyListApiRepository {
 
     private val retrofitApi = retrofitService.create(IMyListApi::class.java)
 
-    suspend fun getMyList() = retrofitApi.getMyList(FirebaseAuth.getInstance().currentUser!!.uid)
+    suspend fun getMyList() = retrofitApi.getMyList()
 
     suspend fun addToMyList(mylistBody: MyListModel) = retrofitApi.addToMyList(mylistBody)
 

@@ -1,5 +1,6 @@
 package com.example.booksapp.api
 
+import com.example.booksapp.models.Book
 import com.example.booksapp.models.MyListModel
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -9,7 +10,7 @@ interface IMyListApi {
 
     @GET("/mylist")
     suspend fun getMyList(
-        @Query("userId") userid: String
+//        @Query("userId") userid: String
     ):Response<List<MyListModel>>
 
     @POST("/mylist")

@@ -22,15 +22,28 @@
         <action
             android:id="@+id/action_detailsFragment_to_myListFragment2"
             app:destination="@id/myListFragment2" />
+        <action
+            android:id="@+id/action_detailsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myListFragment2"
+        android:name="com.example.booksapp.fragments.MyListFragment"
+        android:label="fragment_my_list"
+        tools:layout="@layout/fragment_my_list" >
+        <action
+            android:id="@+id/action_myListFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.booksapp.fragments.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
-    <fragment
-        android:id="@+id/myListFragment2"
-        android:name="com.example.booksapp.fragments.MyListFragment"
-        android:label="fragment_my_list"
-        tools:layout="@layout/fragment_my_list" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_myListFragment2"
+            app:destination="@id/myListFragment2"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

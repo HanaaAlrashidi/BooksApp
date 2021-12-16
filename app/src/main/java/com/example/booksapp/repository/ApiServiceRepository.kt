@@ -11,7 +11,6 @@ import java.lang.Exception
 //  It is a suggested best practice for code separation and architecture. A Repository class handles data operations
 
 
-const val SHARED_PREF_FILE = "Auth"
 private const val BASE_URL = "https://www.dbooks.org"
 
 object ApiServiceRepository {

@@ -1,9 +1,11 @@
 package com.example.booksapp.viewmodel
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.booksapp.activities.USERID
 import com.example.booksapp.models.Book
 import com.example.booksapp.models.MyListModel
 import com.example.booksapp.repository.ApiServiceRepository
@@ -14,12 +16,13 @@ import java.lang.Exception
 
 private const val TAG = "MyListViewModel"
 
-class MyListViewModel: ViewModel(){
+class MyListViewModel(): ViewModel(){
 
     private val apiRepo = MyListApiRepository()
-    val myListLiveData = MutableLiveData<MyListViewModel>()
+    val myListLiveData = MutableLiveData<List<MyListModel>>()
     val editLiveData = MutableLiveData<String>()
     val deleteLiveData = MutableLiveData<String>()
+
 
 
     fun callMyList(){
@@ -29,13 +32,15 @@ class MyListViewModel: ViewModel(){
 
             // Use try and catch for handling http exceptions
             try {
+
                 // Calling the API Methods and handles the result
+
                 val response = apiRepo.getMyList()
                 if (response.isSuccessful) {
                     response.body()?.run{
                         Log.d(TAG, this.toString())
                         //Send Response to view
-                        myListLiveData.postValue(MyListViewModel())
+                        myListLiveData.postValue(this)
                     }
 
                 } else {

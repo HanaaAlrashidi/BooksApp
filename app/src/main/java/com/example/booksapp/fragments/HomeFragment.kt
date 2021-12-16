@@ -12,27 +12,22 @@ import com.example.booksapp.adaptersimport.HomeRecyclerViewAdapter
 import com.example.booksapp.databinding.FragmentHomeBinding
 import com.example.booksapp.models.Book
 import com.example.booksapp.models.BookModel
-import com.example.booksapp.repository.SHARED_PREF_FILE
 import com.example.booksapp.viewmodel.BooksViewModel
 
 
 class HomeFragment : Fragment() {
-
-
     private lateinit var binding: FragmentHomeBinding
     private var allBooks = listOf<Book>()
     private lateinit var homeAdapter: HomeRecyclerViewAdapter
+    //private lateinit var sharedPref: SharedPreferences
     private val booksViewModel: BooksViewModel by activityViewModels()
 
-    private lateinit var sharedPref: SharedPreferences
-    private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-        sharedPref = requireActivity().getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
-        sharedPrefEditor  = sharedPref.edit()
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,3 +66,4 @@ class HomeFragment : Fragment() {
 
 
 }
+
