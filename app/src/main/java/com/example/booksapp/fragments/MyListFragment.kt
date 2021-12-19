@@ -32,7 +32,7 @@ class MyListFragment : Fragment() {
     private lateinit var myListAdapter: MyListRecyclerViewAdapter
     private val myListViewModel: MyListViewModel by activityViewModels()
     private lateinit var sharedPref: SharedPreferences
-    private lateinit var  userID:String
+    private var  userID:String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,7 @@ class MyListFragment : Fragment() {
         binding.myListRecyclerView.adapter = myListAdapter
 
 
-        observers()
+
 
 
         //========================
@@ -65,11 +65,11 @@ class MyListFragment : Fragment() {
 //                .commit()
             findNavController().navigate(R.id.action_myListFragment2_to_loginFragment)
         }else{
-         userID = sharedPref.getString(USERID,"")!!
+         userID = sharedPref.getString(USERID,"") ?: ""
             myListViewModel.callMyList()
         }
 
-
+        observers()
 
         //============================
     }
