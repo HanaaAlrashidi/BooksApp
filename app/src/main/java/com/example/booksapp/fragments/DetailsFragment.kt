@@ -9,6 +9,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.view.menu.MenuView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
@@ -54,7 +55,7 @@ class DetailsFragment() : Fragment() {
         binding.imageButton.setOnClickListener {
 
             if (sharedPref.getBoolean(STATE,false)){
-                booksViewModel.addBooks(book, binding.noteEditText.text.toString())
+                booksViewModel.addBooks(book, binding.autherTextview.toString())
                 findNavController().navigate(R.id.action_detailsFragment_to_myListFragment2)
             }else{
                 findNavController().navigate(R.id.action_detailsFragment_to_loginFragment)

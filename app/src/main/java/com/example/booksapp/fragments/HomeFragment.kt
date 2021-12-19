@@ -19,14 +19,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private var allBooks = listOf<Book>()
     private lateinit var homeAdapter: HomeRecyclerViewAdapter
-    //private lateinit var sharedPref: SharedPreferences
     private val booksViewModel: BooksViewModel by activityViewModels()
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
 
     override fun onCreateView(

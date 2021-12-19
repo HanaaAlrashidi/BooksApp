@@ -12,7 +12,9 @@
     <string name="home">Home</string>
     <string name="myList">My LIst</string>
     <string name="profile">Prolfile</string>
-    <string name="readme">READ ME</string>
+<!--    <string name="readme">READ ME</string>-->
     <string name="title">Title</string>
     <string name="improve">IMPROVE KNOWLEDGE</string>
+    <string name="logout">logout</string>
+    <string name="readme">READ ME</string>
 </resources>

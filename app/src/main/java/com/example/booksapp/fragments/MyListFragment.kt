@@ -65,7 +65,7 @@ class MyListFragment : Fragment() {
 //                .commit()
             findNavController().navigate(R.id.action_myListFragment2_to_loginFragment)
         }else{
-         userID  = sharedPref.getString(USERID,"")!!
+         userID = sharedPref.getString(USERID,"")!!
             myListViewModel.callMyList()
         }
 

@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        app:circularflow_defaultRadius="20dp"
+        app:circularflow_radiusInDP="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,21 +37,21 @@
 
         <TextView
             android:id="@+id/auther_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="142dp"
             android:text="Author"
             android:textColor="@color/orange"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/bookDetails_imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/subtitle_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginBottom="16dp"
@@ -57,39 +59,49 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/readMe_button"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/bookDetails_imageView"
             app:layout_constraintTop_toBottomOf="@+id/auther_textview"
-            app:layout_constraintVertical_bias="0.166" />
+            app:layout_constraintVertical_bias="0.2" />
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/buttons_style"
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:src="@drawable/ic_baseline_add_24"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/readMe_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.815"
-            app:layout_constraintStart_toEndOf="@+id/subtitle_textView"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.238"
+            app:layout_constraintVertical_bias="0.244"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/note_editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="380dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:circularflow_radiusInDP="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bookDetails_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            app:layout_constraintVertical_bias="0.773" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle_textView"
+            app:layout_constraintVertical_bias="0.944" />
+
+        <Button
+            android:id="@+id/readMe_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/buttons_style"
+            android:text="@string/readme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
