@@ -13,7 +13,7 @@ data class MyListModel(
     @SerializedName("name")
     val name: String,
     @SerializedName("note")
-    val note: String,
+    var note: String,
     @SerializedName("userid")
     val userid: String
 )

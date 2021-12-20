@@ -50,14 +50,14 @@ class MyListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myListAdapter = MyListRecyclerViewAdapter()
+        myListAdapter = MyListRecyclerViewAdapter(myListViewModel)
         binding.myListRecyclerView.adapter = myListAdapter
 
 
 
 
 
-        //========================
+        //======================================================================================
         val loginFragment = LoginFragment()
         val loggedIn = sharedPref.getBoolean(STATE,false)
         if (!loggedIn){
@@ -69,10 +69,12 @@ class MyListFragment : Fragment() {
             myListViewModel.callMyList()
         }
 
+        // Response Observers
         observers()
 
-        //============================
     }
+
+//    ===========================================================================================
 
     fun observers(){
 

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/back"
     tools:context=".fragments.LoginFragment">
 
     <Button
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="464dp"
+        android:layout_marginTop="272dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/buttons_style"
         android:text="Creat Account"
@@ -35,5 +35,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/creat_button"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.057" />
 </androidx.constraintlayout.widget.ConstraintLayout>

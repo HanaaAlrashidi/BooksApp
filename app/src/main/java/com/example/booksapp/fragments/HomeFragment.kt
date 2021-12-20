@@ -1,5 +1,6 @@
 package com.example.booksapp.fragments
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -25,6 +26,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeAdapter: HomeRecyclerViewAdapter
     private val booksViewModel: BooksViewModel by activityViewModels()
 
+    private lateinit var progressDialog: ProgressDialog
     private lateinit var sharedPref: SharedPreferences
     private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
@@ -61,6 +63,8 @@ class HomeFragment : Fragment() {
 
         // Event
         booksViewModel.callBooks()
+
+
     }
 
     fun observers() {
@@ -78,25 +82,34 @@ class HomeFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.logout_item -> {
+            R.id.logout_menuItem -> {
+                sharedPrefEditor.putString(USERID, "")
                 sharedPrefEditor.putBoolean(STATE,false)
                 sharedPrefEditor.commit()
                 FirebaseAuth.getInstance().signOut()
-                Toast.makeText( requireActivity(), "you are logged out successfully", Toast.LENGTH_SHORT).show()
+                progressDialog = ProgressDialog(requireActivity())
+                progressDialog.setTitle("Loading...")
+                progressDialog.setCancelable(false)
+//                Toast.makeText( requireActivity(), "you are logged out successfully", Toast.LENGTH_SHORT).show()
                 logoutItem.isVisible = false
             }
+
         }
+
+
         return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         requireActivity().menuInflater.inflate(R.menu.settingmenu, menu)
 
-        logoutItem = menu.findItem(R.id.logout_item)
+        logoutItem = menu.findItem(R.id.logout_menuItem)
 
         val userId = sharedPref.getString(USERID,"")
 
-        logoutItem.isVisible = userId!!.isNotBlank()
+        if (userId!!.isBlank()){
+            logoutItem.isVisible = false
+        }
 
 
     }

@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.booksapp.databinding.MyListItemLayoutBinding
 import com.example.booksapp.models.Book
 import com.example.booksapp.models.MyListModel
+import com.example.booksapp.viewmodel.MyListViewModel
 import com.squareup.picasso.Picasso
 
-class MyListRecyclerViewAdapter:
+class MyListRecyclerViewAdapter(val myListViewModel: MyListViewModel):
     RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MyListModel>() {
@@ -48,6 +49,14 @@ class MyListRecyclerViewAdapter:
     override fun onBindViewHolder(holder: MyListViewHolder, position: Int) {
         val item = differ.currentList[position]
 
+        holder.binding.editImageButton.setOnClickListener {
+            val text = holder.binding.noteEditText.text.toString()
+            item.note = text
+            myListViewModel.editMyList(item)
+
+            holder.binding.noteEditText.isFocusable = false
+        }
+
 
        holder.bind(item)
 
@@ -60,6 +69,7 @@ class MyListRecyclerViewAdapter:
     class MyListViewHolder(val binding: MyListItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MyListModel){
             binding.titleTextview.text = item.name
+            binding.noteEditText.setText(item.note)
             Picasso.get().load(item.image).into(binding.bookImageView)
 
         }
