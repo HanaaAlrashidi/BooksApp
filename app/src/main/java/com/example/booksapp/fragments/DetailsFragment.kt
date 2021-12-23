@@ -32,7 +32,6 @@ class DetailsFragment() : Fragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private val booksViewModel: BooksViewModel by activityViewModels()
-    private val myListViewModel: MyListViewModel by activityViewModels()
     private lateinit var book: Book
     lateinit var  sharedPref: SharedPreferences
 

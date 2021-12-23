@@ -1,11 +1,9 @@
 package com.example.booksapp.fragments
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.booksapp.R
@@ -15,8 +13,8 @@ import com.example.booksapp.activities.USERID
 import com.example.booksapp.adaptersimport.HomeRecyclerViewAdapter
 import com.example.booksapp.databinding.FragmentHomeBinding
 import com.example.booksapp.models.Book
-import com.example.booksapp.models.BookModel
 import com.example.booksapp.viewmodel.BooksViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -26,7 +24,6 @@ class HomeFragment : Fragment() {
     private lateinit var homeAdapter: HomeRecyclerViewAdapter
     private val booksViewModel: BooksViewModel by activityViewModels()
 
-    private lateinit var progressDialog: ProgressDialog
     private lateinit var sharedPref: SharedPreferences
     private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
@@ -78,36 +75,44 @@ class HomeFragment : Fragment() {
 
     }
 
-    //-------------------------------------------------------
+    //---------------------------------------------------------------------------
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout_menuItem -> {
-                sharedPrefEditor.putString(USERID, "")
-                sharedPrefEditor.putBoolean(STATE,false)
-                sharedPrefEditor.commit()
-                FirebaseAuth.getInstance().signOut()
-                progressDialog = ProgressDialog(requireActivity())
-                progressDialog.setTitle("Loading...")
-                progressDialog.setCancelable(false)
-//                Toast.makeText( requireActivity(), "you are logged out successfully", Toast.LENGTH_SHORT).show()
-                logoutItem.isVisible = false
+
+                //when user logged out this dialog will show
+                MaterialAlertDialogBuilder(
+                    requireActivity(),
+                    android.R.style.ThemeOverlay_Material_Dialog_Alert
+                )
+                    .setMessage("Are you sure you want to Logout ?")
+                    //when the user press No the dialog will dismiss
+                    .setNegativeButton("No") { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    // when the user press yes the shared pref state "false" -> logout
+                    .setPositiveButton("yes") { dialog, which ->
+                        sharedPrefEditor.putString(USERID, "")
+                        sharedPrefEditor.putBoolean(STATE, false)
+                        sharedPrefEditor.commit()
+                        FirebaseAuth.getInstance().signOut()
+                        logoutItem.isVisible = false
+                    }.show()
             }
-
         }
-
-
         return super.onOptionsItemSelected(item)
     }
 
+    //--------------------------------------------------------------------------------
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         requireActivity().menuInflater.inflate(R.menu.settingmenu, menu)
 
         logoutItem = menu.findItem(R.id.logout_menuItem)
 
-        val userId = sharedPref.getString(USERID,"")
+        val userId = sharedPref.getString(USERID, "")
 
-        if (userId!!.isBlank()){
+        if (userId!!.isBlank()) {
             logoutItem.isVisible = false
         }
 
@@ -117,3 +122,4 @@ class HomeFragment : Fragment() {
 
 }
 
+//-----------------------------------------------------------------------------------

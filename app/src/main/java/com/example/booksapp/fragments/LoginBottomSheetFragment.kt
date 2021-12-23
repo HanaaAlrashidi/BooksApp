@@ -56,6 +56,9 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
                             dismiss()
                             findNavController().navigate(R.id.action_loginFragment_to_myListFragment2)
                         }
+                        else{
+                            Toast.makeText(requireActivity(), task.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
+                        }
                     }
             }else{
                 Toast.makeText(requireActivity(), "Email and password must not be empty", Toast.LENGTH_SHORT).show()

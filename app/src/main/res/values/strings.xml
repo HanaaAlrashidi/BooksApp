@@ -18,4 +18,6 @@
     <string name="logout">logout</string>
     <string name="readme">READ ME</string>
     <string name="save">SAVE</string>
+    <string name="mylist">If you want to see your Book list , Please login .</string>
+    <string name="bookslist">"If you want to see your books list , please login "</string>
 </resources>

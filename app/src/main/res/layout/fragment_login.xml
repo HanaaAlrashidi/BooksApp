@@ -9,31 +9,52 @@
     tools:context=".fragments.LoginFragment">
 
     <Button
-        android:id="@+id/creat_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="272dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/buttons_style"
-        android:text="Creat Account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/login_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="172dp"
         android:background="@drawable/buttons_style"
         android:text="LOGIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/creat_button"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/creat_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/buttons_style"
+        android:text="Creat Account"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
+        app:layout_constraintEnd_toEndOf="@+id/login_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/login_button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/bookslist"
+        android:textColor="#B1ACAC"
+        android:textColorHint="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/creat_button"
+        app:layout_constraintEnd_toEndOf="@+id/creat_button"
+        app:layout_constraintStart_toStartOf="@+id/creat_button" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="182dp"
+        android:layout_height="165dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/img"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:tint="#B1ACAC" />
 </androidx.constraintlayout.widget.ConstraintLayout>
