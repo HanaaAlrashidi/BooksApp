@@ -75,5 +75,6 @@ class HomeRecyclerViewAdapter(context: Context, val booksViewModel: BooksViewMod
         val bookTitleTextView: TextView = itemView.findViewById(R.id.book_Title)
         val bookImage: ImageView = itemView.findViewById(R.id.book_imageView)
 
+
     }
 }

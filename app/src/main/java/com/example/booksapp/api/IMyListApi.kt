@@ -1,6 +1,6 @@
 package com.example.booksapp.api
 
-import com.example.booksapp.models.Book
+
 import com.example.booksapp.models.MyListModel
 import okhttp3.ResponseBody
 import retrofit2.Response

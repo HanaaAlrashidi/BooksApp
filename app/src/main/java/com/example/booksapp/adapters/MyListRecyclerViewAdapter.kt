@@ -1,22 +1,19 @@
 package com.example.booksapp.adaptersimport
 
+
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booksapp.R
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.booksapp.databinding.MyListItemLayoutBinding
-import com.example.booksapp.models.Book
 import com.example.booksapp.models.MyListModel
 import com.example.booksapp.viewmodel.MyListViewModel
 import com.squareup.picasso.Picasso
 
 class MyListRecyclerViewAdapter(val myListViewModel: MyListViewModel):
     RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {
+
 
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MyListModel>() {
         override fun areItemsTheSame(oldItem: MyListModel, newItem: MyListModel): Boolean {
@@ -43,11 +40,19 @@ class MyListRecyclerViewAdapter(val myListViewModel: MyListViewModel):
        val binding = MyListItemLayoutBinding.inflate(LayoutInflater.from(parent.context),
        parent,
        false)
-        return MyListViewHolder(binding)
+        return MyListViewHolder(binding , myListViewModel)
     }
 
     override fun onBindViewHolder(holder: MyListViewHolder, position: Int) {
         val item = differ.currentList[position]
+
+        holder.binding.deleteImageButton.setOnClickListener {
+            var listt = mutableListOf<MyListModel>()
+            listt.addAll(differ.currentList)
+            listt.remove(item)
+            differ.submitList(listt.toList())
+            myListViewModel.deleteFromMyList(item)
+        }
 
         holder.binding.editImageButton.setOnClickListener {
             val text = holder.binding.noteEditText.text.toString()
@@ -57,7 +62,6 @@ class MyListRecyclerViewAdapter(val myListViewModel: MyListViewModel):
             holder.binding.noteEditText.isFocusable = false
         }
 
-
        holder.bind(item)
 
     }
@@ -66,11 +70,17 @@ class MyListRecyclerViewAdapter(val myListViewModel: MyListViewModel):
         return differ.currentList.size
     }
 
-    class MyListViewHolder(val binding: MyListItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyListViewHolder(val binding: MyListItemLayoutBinding, val myListViewModel: MyListViewModel)
+        : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(item: MyListModel){
             binding.titleTextview.text = item.name
             binding.noteEditText.setText(item.note)
+
+
+
             Picasso.get().load(item.image).into(binding.bookImageView)
+
 
         }
     }

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.booksapp.R
@@ -61,8 +62,8 @@ class MyListFragment : Fragment() {
         val loginFragment = LoginFragment()
         val loggedIn = sharedPref.getBoolean(STATE,false)
         if (!loggedIn){
-//            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.my_list_layout,loginFragment)
-//                .commit()
+
+
             findNavController().navigate(R.id.action_myListFragment2_to_loginFragment)
         }else{
          userID = sharedPref.getString(USERID,"") ?: ""
@@ -74,23 +75,35 @@ class MyListFragment : Fragment() {
 
     }
 
-//    ===========================================================================================
+        //===========================================================================================
 
     fun observers(){
 
         myListViewModel.myListLiveData.observe(viewLifecycleOwner, {
 
-            //Filtering the list that is coming from the response based on the userID
-          val filteredList =   it.filter {
-                userID == it.userid
+            it?.let{  //Filtering the list that is coming from the response based on the userID
+                val filteredList = it.filter {
+                    userID == it.userid
+                }
+
+
+                myListAdapter.submitList(filteredList)
+                binding.myListProgressBar.animate().alpha(0f).setDuration(1000)
+                binding.myListRecyclerView.animate().alpha(1f)
+
+                myListViewModel.myListLiveData.postValue(null)
             }
 
-
-            myListAdapter.submitList(filteredList)
-            binding.myListProgressBar.animate().alpha(0f).setDuration(1000)
-            binding.myListRecyclerView.animate().alpha(1f)
         })
 
+        myListViewModel.deleteLiveData.observe(viewLifecycleOwner,{
+            it?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+
+                }
+           // myListViewModel.deleteLiveData.postValue(null)
+
+        })
 
     }
 

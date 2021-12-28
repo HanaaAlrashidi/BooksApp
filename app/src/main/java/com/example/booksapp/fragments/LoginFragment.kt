@@ -29,15 +29,16 @@ class LoginFragment : Fragment() {
         binding.creatButton.setOnClickListener {
 
             var register = RegisterBottomSheetFragment()
-             register.show(childFragmentManager,"")
+            register.show(childFragmentManager, "")
         }
 
         binding.loginButton.setOnClickListener {
             var login = LoginBottomSheetFragment()
-            login.show(childFragmentManager,"")
+            login.show(childFragmentManager, "")
         }
 
 
     }
+
 
 }

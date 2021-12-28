@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 
 
-// A Repository is a class that abstracts access to multiple data sources (Room db, Network).
+// A Repository is a class that abstracts access to multiple data sources.
 //  It is a suggested best practice for code separation and architecture. A Repository class handles data operations
 
 

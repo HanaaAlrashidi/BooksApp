@@ -78,11 +78,13 @@ class MyListViewModel(): ViewModel(){
         viewModelScope.launch (Dispatchers.IO) {
             val response = apiRepo.deleteFromMyList(myListModel.id)
             if (response.isSuccessful){
+                Log.d(TAG, "success")
                 response.body()?.run {
                     Log.d(TAG, this.toString())
                     deleteLiveData.postValue("successful")
                 }
-            }
+            } else
+                Log.d(TAG, "fail- ${response.message()}")
         }
 
     }

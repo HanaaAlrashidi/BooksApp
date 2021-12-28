@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ProgressBar
 import androidx.appcompat.view.menu.MenuView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
@@ -36,6 +37,13 @@ class DetailsFragment() : Fragment() {
     lateinit var  sharedPref: SharedPreferences
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,7 +64,7 @@ class DetailsFragment() : Fragment() {
         binding.imageButton.setOnClickListener {
 
             if (sharedPref.getBoolean(STATE,false)){
-                booksViewModel.addBooks(book, binding.autherTextview.toString())
+                booksViewModel.addBooks(book, "")
                 findNavController().navigate(R.id.action_detailsFragment_to_myListFragment2)
             }else{
                 findNavController().navigate(R.id.action_detailsFragment_to_loginFragment)

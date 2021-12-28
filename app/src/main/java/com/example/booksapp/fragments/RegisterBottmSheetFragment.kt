@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.booksapp.R
+import com.example.booksapp.activities.STATE
+import com.example.booksapp.activities.USERID
 import com.example.booksapp.databinding.FragmentRegisterBottmSheetBinding
 import com.example.booksapp.util.RegisterValidations
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -18,7 +20,7 @@ class RegisterBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentRegisterBottmSheetBinding
     private val validator = RegisterValidations()
-   // private lateinit var sharedPrefEditor: SharedPreferences.Editor
+    private lateinit var sharedPrefEditor: SharedPreferences.Editor
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +54,8 @@ class RegisterBottomSheetFragment : BottomSheetDialogFragment() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
+                                    sharedPrefEditor.putBoolean(STATE,true).commit()
+                                    sharedPrefEditor.putString(USERID,FirebaseAuth.getInstance().uid).commit()
                                     dismiss()
                                 }
                             }
