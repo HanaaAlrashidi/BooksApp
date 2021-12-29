@@ -1,32 +1,28 @@
 package com.example.booksapp.fragments
 
+
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.ProgressBar
-import androidx.appcompat.view.menu.MenuView
-import androidx.fragment.app.DialogFragment
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.booksapp.R
 import com.example.booksapp.activities.SHARED_PREF
 import com.example.booksapp.activities.STATE
-import com.example.booksapp.databinding.ActivityMainBinding.inflate
 import com.example.booksapp.databinding.FragmentDetailsBinding
 import com.example.booksapp.models.Book
-import com.example.booksapp.models.MyListModel
 import com.example.booksapp.viewmodel.BooksViewModel
-import com.example.booksapp.viewmodel.MyListViewModel
 import com.squareup.picasso.Picasso
+import retrofit2.http.Url
 
 
 class DetailsFragment() : Fragment() {
@@ -34,14 +30,9 @@ class DetailsFragment() : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val booksViewModel: BooksViewModel by activityViewModels()
     private lateinit var book: Book
-    lateinit var  sharedPref: SharedPreferences
+    lateinit var sharedPref: SharedPreferences
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
+    private lateinit var webView: WebView
 
 
     override fun onCreateView(
@@ -54,6 +45,7 @@ class DetailsFragment() : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,12 +55,11 @@ class DetailsFragment() : Fragment() {
 
         binding.imageButton.setOnClickListener {
 
-            if (sharedPref.getBoolean(STATE,false)){
+            if (sharedPref.getBoolean(STATE, false)) {
                 booksViewModel.addBooks(book, "")
                 findNavController().navigate(R.id.action_detailsFragment_to_myListFragment2)
-            }else{
+            } else {
                 findNavController().navigate(R.id.action_detailsFragment_to_loginFragment)
-
 
             }
         }
@@ -81,20 +72,39 @@ class DetailsFragment() : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun observers() {
 
-        booksViewModel.selectedItemMutableLiveData.observe(viewLifecycleOwner,{
+        booksViewModel.selectedItemMutableLiveData.observe(viewLifecycleOwner, {
+            binding.webProgressBar.animate().alpha(0f).duration = 1000
             book = it
             binding.autherTextview.text = it.authors
             binding.subtitleTextView.text = it.subtitle
             Picasso.get().load(it.image).into(binding.bookDetailsImageView)
 
+            //call web view function
+            showWebView(it.url)
         })
-
-
 
 
     }
 
 
+
+    @SuppressLint("SetJavaScriptEnabled")
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun showWebView(url: String){
+        webView = binding.webView
+        // WebViewClient allows you to handle
+        webView.webViewClient = WebViewClient()
+
+        // this will load the url of the website
+        webView.apply {
+            loadUrl(url)
+//            // this will enable the javascript settings
+            settings.javaScriptEnabled = true
+            settings.safeBrowsingEnabled = true
+        }
+
+    }
 }
