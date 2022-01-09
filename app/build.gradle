@@ -71,5 +71,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
+    // To use swipe delete, I need the following dependency:
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
+
 
 }

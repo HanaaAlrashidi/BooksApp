@@ -10,7 +10,7 @@ interface IMyListApi {
 
     @GET("/mylist")
     suspend fun getMyList(
-//        @Query("userId") userid: String
+//      @Query("userId") userid: String
     ):Response<List<MyListModel>>
 
     @POST("/mylist")

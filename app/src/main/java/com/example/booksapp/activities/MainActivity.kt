@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     // If I want to back to the last fragment from where I come here just user the navigateUp method of NavController
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navController.navigateUp()
     }
 
     private fun createNotificationChannel() {

@@ -36,9 +36,11 @@
                 android:id="@+id/book_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Book Title"
-                android:maxLines="3"
+                android:layout_marginBottom="10dp"
                 android:ellipsize="end"
+                android:maxLines="3"
+                android:paddingLeft="10dp"
+                android:text="Book Title"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -47,13 +49,4 @@
 
     </androidx.cardview.widget.CardView>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

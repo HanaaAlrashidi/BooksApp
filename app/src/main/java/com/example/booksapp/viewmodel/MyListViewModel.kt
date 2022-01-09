@@ -16,7 +16,7 @@ import java.lang.Exception
 
 private const val TAG = "MyListViewModel"
 
-class MyListViewModel(): ViewModel(){
+class MyListViewModel() : ViewModel() {
 
     private val apiRepo = MyListApiRepository()
     val myListLiveData = MutableLiveData<List<MyListModel>>()
@@ -24,8 +24,7 @@ class MyListViewModel(): ViewModel(){
     val deleteLiveData = MutableLiveData<String>()
 
 
-
-    fun callMyList(){
+    fun callMyList() {
 
         viewModelScope.launch(Dispatchers.IO) {
             // Coroutines Dispatchers
@@ -37,7 +36,7 @@ class MyListViewModel(): ViewModel(){
 
                 val response = apiRepo.getMyList()
                 if (response.isSuccessful) {
-                    response.body()?.run{
+                    response.body()?.run {
                         Log.d(TAG, this.toString())
                         //Send Response to view
                         myListLiveData.postValue(this)
@@ -54,30 +53,30 @@ class MyListViewModel(): ViewModel(){
         }
     }
 
-    fun editMyList(myListBody: MyListModel){
+    fun editMyList(myListBody: MyListModel) {
 
-        viewModelScope.launch (Dispatchers.IO ){
+        viewModelScope.launch(Dispatchers.IO) {
 
             try {
                 val response = apiRepo.editMyList(myListBody.id, myListBody)
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     response.body()?.run {
                         Log.d(TAG, this.toString())
                         editLiveData.postValue("successful")
 
                     }
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d(TAG, e.message.toString())
             }
         }
     }
 
-    fun deleteFromMyList(myListModel: MyListModel){
+    fun deleteFromMyList(myListModel: MyListModel) {
 
-        viewModelScope.launch (Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             val response = apiRepo.deleteFromMyList(myListModel.id)
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 Log.d(TAG, "success")
                 response.body()?.run {
                     Log.d(TAG, this.toString())

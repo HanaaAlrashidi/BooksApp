@@ -55,6 +55,7 @@ class HomeFragment : Fragment() {
         homeAdapter = HomeRecyclerViewAdapter(requireActivity(), booksViewModel)
         binding.homeRecyclerView.adapter = homeAdapter
 
+
         // Response Observers
         observers()
 
@@ -122,4 +123,4 @@ class HomeFragment : Fragment() {
 
 }
 
-//-----------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------

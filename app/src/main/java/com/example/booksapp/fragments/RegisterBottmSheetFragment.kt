@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.example.booksapp.R
 import com.example.booksapp.activities.STATE
 import com.example.booksapp.activities.USERID
 import com.example.booksapp.databinding.FragmentRegisterBottmSheetBinding
@@ -54,8 +52,11 @@ class RegisterBottomSheetFragment : BottomSheetDialogFragment() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    sharedPrefEditor.putBoolean(STATE,true).commit()
-                                    sharedPrefEditor.putString(USERID,FirebaseAuth.getInstance().uid).commit()
+                                    sharedPrefEditor.putBoolean(STATE, true).commit()
+                                    sharedPrefEditor.putString(
+                                        USERID,
+                                        FirebaseAuth.getInstance().uid
+                                    ).commit()
                                     dismiss()
                                 }
                             }

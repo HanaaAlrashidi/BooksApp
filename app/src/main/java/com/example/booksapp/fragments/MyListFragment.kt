@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.booksapp.R
 import com.example.booksapp.activities.SHARED_PREF
 import com.example.booksapp.activities.STATE
@@ -21,6 +24,7 @@ import com.example.booksapp.databinding.FragmentMyListBinding
 import com.example.booksapp.databinding.MyListItemLayoutBinding
 import com.example.booksapp.models.Book
 import com.example.booksapp.models.MyListModel
+import com.example.booksapp.util.SwipeToDeleteCallback
 import com.example.booksapp.viewmodel.BooksViewModel
 import com.example.booksapp.viewmodel.MyListViewModel
 import com.google.android.gms.tasks.Tasks.call
@@ -33,7 +37,7 @@ class MyListFragment : Fragment() {
     private lateinit var myListAdapter: MyListRecyclerViewAdapter
     private val myListViewModel: MyListViewModel by activityViewModels()
     private lateinit var sharedPref: SharedPreferences
-    private var  userID:String = ""
+    private var userID: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,19 +58,25 @@ class MyListFragment : Fragment() {
         myListAdapter = MyListRecyclerViewAdapter(myListViewModel)
         binding.myListRecyclerView.adapter = myListAdapter
 
+        //======================================================================================
+        // for swipe delete
+        val swipeDelete = object : SwipeToDeleteCallback(this.requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                myListAdapter.deleteItem(viewHolder.adapterPosition)
+            }
 
-
-
-
+        }
+        val touchHelper = ItemTouchHelper(swipeDelete)
+        touchHelper.attachToRecyclerView(binding.myListRecyclerView)
         //======================================================================================
         val loginFragment = LoginFragment()
-        val loggedIn = sharedPref.getBoolean(STATE,false)
-        if (!loggedIn){
+        val loggedIn = sharedPref.getBoolean(STATE, false)
+        if (!loggedIn) {
 
 
             findNavController().navigate(R.id.action_myListFragment2_to_loginFragment)
-        }else{
-         userID = sharedPref.getString(USERID,"") ?: ""
+        } else {
+            userID = sharedPref.getString(USERID, "") ?: ""
             myListViewModel.callMyList()
         }
 
@@ -75,17 +85,17 @@ class MyListFragment : Fragment() {
 
     }
 
-        //===========================================================================================
+    //===========================================================================================
 
-    fun observers(){
+    fun observers() {
 
         myListViewModel.myListLiveData.observe(viewLifecycleOwner, {
 
-            it?.let{  //Filtering the list that is coming from the response based on the userID
+            //Filtering the list that is coming from the response based on the userID
+            it?.let {
                 val filteredList = it.filter {
                     userID == it.userid
                 }
-
 
                 myListAdapter.submitList(filteredList)
                 binding.myListProgressBar.animate().alpha(0f).setDuration(1000)
@@ -96,12 +106,12 @@ class MyListFragment : Fragment() {
 
         })
 
-        myListViewModel.deleteLiveData.observe(viewLifecycleOwner,{
+        myListViewModel.deleteLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
 
-                }
-           // myListViewModel.deleteLiveData.postValue(null)
+            }
+
 
         })
 

@@ -16,6 +16,7 @@ import java.lang.Exception
 
 
 private const val TAG = "BooksViewModel"
+
 class BooksViewModel : ViewModel() {
 
     private val apiRepo = ApiServiceRepository
@@ -24,6 +25,7 @@ class BooksViewModel : ViewModel() {
     val booksLiveData = MutableLiveData<List<Book>>()
     val myListLiveData = MutableLiveData<MyListViewModel>()
     var selectedItemMutableLiveData = MutableLiveData<Book>()
+    var addLiveData = MutableLiveData<String>()
 
 
     fun callBooks() {
@@ -38,11 +40,11 @@ class BooksViewModel : ViewModel() {
 
                 if (response.isSuccessful) {
                     Log.d(TAG, "Success")
-                 response.body()?.run{
-                     Log.d(TAG, this.toString())
-                     //Send Response to view
-                     booksLiveData.postValue(books)
-                 }
+                    response.body()?.run {
+                        Log.d(TAG, this.toString())
+                        //Send Response to view
+                        booksLiveData.postValue(books)
+                    }
 
                 } else {
                     Log.d(TAG, response.message())
@@ -56,10 +58,9 @@ class BooksViewModel : ViewModel() {
     }
 
 
+    fun addBooks(myListModel: Book, note: String) {
 
-    fun addBooks(myListModel: Book, note: String){
-
-        Log.d(TAG,myListModel.toString())
+        Log.d(TAG, myListModel.toString())
         viewModelScope.launch(Dispatchers.IO) {
             // Coroutines Dispatchers
 
@@ -67,16 +68,21 @@ class BooksViewModel : ViewModel() {
             try {
                 // Calling the API Methods and handles the result
                 val response = apiMylistRepo.addToMyList(
-                    MyListModel(myListModel.authors,myListModel.id,myListModel.image,myListModel.title,note,
-                FirebaseAuth.getInstance().currentUser!!.uid)
+                    MyListModel(
+                        myListModel.authors,
+                        myListModel.id,
+                        myListModel.image,
+                        myListModel.title,
+                        note,
+                        FirebaseAuth.getInstance().currentUser!!.uid
+                    )
                 )
 
                 if (response.isSuccessful) {
                     Log.d(TAG, "Success")
-                    response.body()?.run{
+                    response.body()?.run {
                         Log.d(TAG, "Book: ${this.toString()}")
-
-
+                        addLiveData.postValue("Success")
                     }
 
                 } else {
