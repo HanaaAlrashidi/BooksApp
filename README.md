@@ -32,9 +32,9 @@
 
 ## wireframe
 Wireframe:
-Figma link 
+Figma link https://www.figma.com/file/fHaevXfVC6Jdb95QScK46B/Untitled?node-id=0%3A1
 
-![Figma Frame]()
+![Figma Frame](https://github.com/HanaaAlrashidi/BooksApp/blob/9e2d0bf54f9e9e41a12d1f3905cffa2cca548dfd/FinalCapstoneDesign.png)
 
 <hr>
 
@@ -70,7 +70,7 @@ I mostly solve the problems in the following order:
 
 ## Final App
 
-![Final project]()
+![Final project](https://github.com/HanaaAlrashidi/BooksApp/blob/9e2d0bf54f9e9e41a12d1f3905cffa2cca548dfd/FinalCapstoneScreenShots.png)
 
 ## Dependencies
 

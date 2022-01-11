@@ -1,6 +1,6 @@
 package com.example.booksapp.activities
 
-import android.app.Notification
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //
     private fun sendNotification() {
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)

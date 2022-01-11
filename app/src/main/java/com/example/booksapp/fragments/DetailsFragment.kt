@@ -74,7 +74,7 @@ class DetailsFragment() : Fragment() {
 
             if (sharedPref.getBoolean(STATE, false)) {
 
-                Log.d(TAG,"The state inside the if is ${sharedPref.getBoolean(STATE, false)}")
+                Log.d(TAG, "The state inside the if is ${sharedPref.getBoolean(STATE, false)}")
                 Log.d(TAG, "user id: $userID")
 
                 // Check the book already exists in MyList
