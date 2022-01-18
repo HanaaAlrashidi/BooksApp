@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isNotEmpty
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -46,6 +48,7 @@ class MyListFragment : Fragment() {
 
         binding = FragmentMyListBinding.inflate(inflater, container, false)
         sharedPref = requireActivity().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        binding.favTextView
 
 
 
@@ -83,6 +86,7 @@ class MyListFragment : Fragment() {
         // Response Observers
         observers()
 
+
     }
 
     //===========================================================================================
@@ -91,8 +95,13 @@ class MyListFragment : Fragment() {
 
         myListViewModel.myListLiveData.observe(viewLifecycleOwner, {
 
-            //Filtering the list that is coming from the response based on the userID
+
             it?.let {
+
+                // To show a text when the recyclerview is empty
+                binding.favTextView.isVisible = it.isEmpty()
+
+                //Filtering the list that is coming from the response based on the userID
                 val filteredList = it.filter {
                     userID == it.userid
                 }
@@ -102,6 +111,7 @@ class MyListFragment : Fragment() {
                 binding.myListRecyclerView.animate().alpha(1f)
 
                 myListViewModel.myListLiveData.postValue(null)
+
             }
 
         })

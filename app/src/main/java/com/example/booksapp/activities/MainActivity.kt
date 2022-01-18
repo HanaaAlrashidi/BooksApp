@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //
+    // To show the notification on notifications screen and lock screen
     private fun sendNotification() {
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)

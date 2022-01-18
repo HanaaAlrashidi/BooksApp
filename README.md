@@ -8,29 +8,32 @@
 - [User Stories](#user-stories)
 - [Wireframe](#wireframe)
 - [Planning and Development](#planning-and-development)
-- [Final App](#final-app)  
+- [Final App](#final-app)
 
 <hr>
 
 ## List of Technologies
--	MVVM Architecture
--   Kotlin
--   Retrofit
--   Diff Util
--   Coroutines
--   Recycler View
--   Web Vie
--   Mock API
--   Firebase Authentication
+
+- MVVM Architecture
+- Kotlin
+- Retrofit
+- Diff Util
+- Coroutines
+- Recycler View
+- Web Vie
+- Mock API
+- Firebase Authentication
 
 ### Tools:
--   Git & Github
--	Android Studio
--	Figma
+
+- Git & Github
+- Android Studio
+- Figma
 
 <hr>
 
 ## wireframe
+
 Wireframe:
 Figma link https://www.figma.com/file/fHaevXfVC6Jdb95QScK46B/Untitled?node-id=0%3A1
 
@@ -39,11 +42,12 @@ Figma link https://www.figma.com/file/fHaevXfVC6Jdb95QScK46B/Untitled?node-id=0%
 <hr>
 
 ## User Stories
--	As a user I want the application show me the books and their covers, so I can Get attention.
--	As a user I want to delete the book from my list by swiping to the left.
--	As a user I want to add the books to my list,  so I can read it in any time.
--	As a user I want to show the books details,name , author and title.
--	As a user I want to read the book by web view, so I can read and download the book easily.
+
+- As a user I want the application show me the books and their covers, so I can Get attention.
+- As a user I want to delete the book from my list by swiping to the left.
+- As a user I want to add the books to my list, so I can read it in any time.
+- As a user I want to show the books details,name , author and title.
+- As a user I want to read the book by web view, so I can read and download the book easily.
 
 <hr>
 
@@ -55,12 +59,14 @@ My plan was as follows:
 2. Front-end: XML design in Android Studio.
 3. Back-end:
     - Firebase.
-    - Mock API  
+    - Mock API
     - Functionality implementation.
 4. Testing
 
 ### Problem solving strategy:
+
 I mostly solve the problems in the following order:
+
 1. Identify the problem
 2. Debugging the code
 3. Search about the error (Google, Stackoverflow)
@@ -77,13 +83,13 @@ I mostly solve the problems in the following order:
 I used the new following dependencies:
 
 ```groovy
-dependencies{
+dependencies {
 //...
-   // Firebase Authentication
-   implementation 'com.google.firebase:firebase-auth:21.0.1'
-   
-   // Swipe delete
-   implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
+    // Firebase Authentication
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
+
+    // Swipe delete
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
 
 }
 ```

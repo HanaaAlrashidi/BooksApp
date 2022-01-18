@@ -23,7 +23,6 @@ class BooksViewModel : ViewModel() {
     private val apiMylistRepo = MyListApiRepository()
 
     val booksLiveData = MutableLiveData<List<Book>>()
-    val myListLiveData = MutableLiveData<MyListViewModel>()
     var selectedItemMutableLiveData = MutableLiveData<Book>()
     var addLiveData = MutableLiveData<String>()
 

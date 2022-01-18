@@ -5,8 +5,10 @@ import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import com.example.booksapp.R
 import com.example.booksapp.databinding.MyListItemLayoutBinding
 import com.example.booksapp.models.MyListModel
 import com.example.booksapp.viewmodel.MyListViewModel
@@ -69,8 +71,14 @@ class MyListRecyclerViewAdapter(val myListViewModel: MyListViewModel) :
             val text = holder.binding.noteEditText.text.toString()
             item.note = text
             myListViewModel.editMyList(item)
-
+            // To hide the cursor
             holder.binding.noteEditText.isFocusable = false
+        }
+
+        holder.itemView.setOnClickListener {
+            myListViewModel.myListLiveData.postValue(listOf(item))
+            holder.itemView.findNavController()
+                .navigate(R.id.action_myListFragment2_to_detailsFragment)
         }
 
         holder.bind(item)

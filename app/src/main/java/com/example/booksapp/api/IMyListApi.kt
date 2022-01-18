@@ -11,18 +11,19 @@ interface IMyListApi {
     @GET("/mylist")
     suspend fun getMyList(
 //      @Query("userId") userid: String
-    ):Response<List<MyListModel>>
+    ): Response<List<MyListModel>>
 
     @POST("/mylist")
-    suspend fun addToMyList
-                (@Body MylistBody: MyListModel):Response<ResponseBody>
+    suspend fun addToMyList(@Body MylistBody: MyListModel): Response<ResponseBody>
 
     @PUT("/mylist/{id}")
-    suspend fun editMyList(@Path("id")Id: String,
-    @Body MylistBody: MyListModel ): Response<MyListModel>
+    suspend fun editMyList(
+        @Path("id") Id: String,
+        @Body MylistBody: MyListModel
+    ): Response<MyListModel>
 
     @DELETE("/mylist/{id}")
-    suspend fun deleteFromMyList (@Path("id") Id: String): Response<ResponseBody>
+    suspend fun deleteFromMyList(@Path("id") Id: String): Response<ResponseBody>
 
 
 }

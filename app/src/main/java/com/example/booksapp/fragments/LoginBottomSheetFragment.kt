@@ -55,7 +55,10 @@ class LoginBottomSheetFragment : BottomSheetDialogFragment() {
                             )
                                 .show()
                             sharedPrefEditor.putBoolean(STATE, true).commit()
-                            sharedPrefEditor.putString(USERID, FirebaseAuth.getInstance().currentUser!!.uid)
+                            sharedPrefEditor.putString(
+                                USERID,
+                                FirebaseAuth.getInstance().currentUser!!.uid
+                            )
                                 .commit()
                             dismiss()
                             findNavController().navigate(R.id.action_loginFragment_to_myListFragment2)

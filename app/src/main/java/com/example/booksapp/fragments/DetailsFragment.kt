@@ -69,7 +69,7 @@ class DetailsFragment() : Fragment() {
 
         userID = sharedPref.getString(USERID, "")!!
 
-
+        // Image button to add books to user's list
         binding.imageButton.setOnClickListener {
 
             if (sharedPref.getBoolean(STATE, false)) {
@@ -142,10 +142,10 @@ class DetailsFragment() : Fragment() {
             }
         })
 
-        booksViewModel.addLiveData.observe(viewLifecycleOwner, {
-
-
-        })
+//        booksViewModel.addLiveData.observe(viewLifecycleOwner, {
+//
+//
+//        })
 
 
     }
