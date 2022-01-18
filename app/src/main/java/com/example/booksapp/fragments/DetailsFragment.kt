@@ -142,11 +142,6 @@ class DetailsFragment() : Fragment() {
             }
         })
 
-//        booksViewModel.addLiveData.observe(viewLifecycleOwner, {
-//
-//
-//        })
-
 
     }
 
